@@ -1,8 +1,3 @@
-//If you are grading this as it currently is, i couldnt get any form of real caching to work, and i frankly just dont care anymore
-//im genuinely having a mental breakdown over how hard this is and this class is making me wanna drop out of the whole school.
-//My social skills are so incredibly bad that id rather turn in something i know is wrong than ask for help
-//im also just desperate for this to be over so i gave up on the bignumber part
-
 #include <stdio.h>
 #include <inttypes.h> // Include this header for PRIu64
 #include <limits.h>
@@ -10,19 +5,30 @@
 #include "memoize.h"
 
 
-unsigned long long int fibbonaci(unsigned long long int number){
-    if (number <= 1){
-        return number;
+long long unsigned int fibbonaci(int number){
+    long long unsigned int term1 = 0;
+    long long unsigned int term2 = 1;
+    long long unsigned int nextTerm = 1;
+    for(int i = 2; i < number; i++){
+        term1 = term2;
+        term2 = nextTerm;
+        nextTerm = term1 + term2;
     }
-    return fibbonaci(number - 1) + fibbonaci(number - 2);
+    return nextTerm;
+}
+
+void test_memo(int memotest){
+    printf("Fibbonaci term %d is %llu\n", memotest, memoized_fibonacci(memotest));
+    printf("Fibbonaci term %d is %llu\n", memotest, memoized_fibonacci(memotest));
 }
 
 int main(){
 
-    int memotest = 30;
     initalize_memo();
-    printf("Fibbonaci of %d is %llu\n", memotest, memoized_fibonacci(memotest));
-    printf("Fibbonaci of %d is %llu\n", memotest, memoized_fibonacci(memotest));
+    provider_func = fibbonaci;
+    test_memo(90);
+    test_memo(30);
+    test_memo(60);
 
 
 

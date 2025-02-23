@@ -5,3 +5,5 @@
 .ob
 .exe
 node_modules/
+bn.c
+bn.h

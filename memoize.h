@@ -5,5 +5,6 @@ unsigned long long int memoized_fibonacci(int input);
 void add_to_memo(unsigned long long int value, int key);
 unsigned long long int check_memo(int key);
 void initalize_memo();
+unsigned long long int (*provider_func)(int);
 
 #endif
